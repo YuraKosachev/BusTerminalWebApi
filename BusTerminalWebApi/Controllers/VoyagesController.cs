@@ -24,9 +24,36 @@ namespace BusTerminalWebApi.Controllers
 
         // GET: api/Voyages
         [Route("AllVoyages")]
-        public IEnumerable<Voyage> GetVoyages()
+        public IEnumerable<VoyageViewModel> GetVoyages()
         {
-            return Context.Voyages;
+            return Context.Voyages.Select(voyage => new VoyageViewModel
+            {
+                VoyageId = voyage.VoyageId,
+                VoyageName = voyage.VoyageName,
+                VoyageDate = voyage.VoyageDate,
+                ArrivalBusStop = Context.BusStops.First(busStop => busStop.BusStopId.Equals(voyage.ArrivalBusStopId)),
+                DepartureBusStop = Context.BusStops.First(busStop => busStop.BusStopId.Equals(voyage.DepartureBusStopId)),
+                Bus = Context.Buses.First(bus => bus.Equals(voyage.BusId)),
+                TicketCost = voyage.TicketCost
+
+            });
+        }
+
+        // GET: api/Voyages
+        [Route("AllVoyages/Search")]
+        public IEnumerable<VoyageViewModel> GetVoyages(SearchParameter searchParameter )
+        {
+            return Context.Voyages.Select(voyage => new VoyageViewModel
+            {
+                VoyageId = voyage.VoyageId,
+                VoyageName = voyage.VoyageName,
+                VoyageDate = voyage.VoyageDate,
+                ArrivalBusStop = Context.BusStops.First(busStop => busStop.BusStopId.Equals(voyage.ArrivalBusStopId)),
+                DepartureBusStop = Context.BusStops.First(busStop => busStop.BusStopId.Equals(voyage.DepartureBusStopId)),
+                Bus = Context.Buses.First(bus => bus.Equals(voyage.BusId)),
+                TicketCost = voyage.TicketCost
+
+            });
         }
 
         // GET: api/Voyages/5

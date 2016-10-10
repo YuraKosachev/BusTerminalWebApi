@@ -9,12 +9,12 @@ namespace BusTerminalWebApi.Models
     {
         public int VoyageId { get; set; }
         public BusStop DepartureBusStop { get; set; }
-        public BusStop ArrivalBusStopId { get; set; }
+        public BusStop ArrivalBusStop { get; set; }
         public Bus Bus { get; set; }
         public string VoyageName { get; set; }
         public DateTime VoyageDate { get; set; }
-        public int NumberOfSeats { get; set;}
-        public int NumberOfRemainingSeats { get; set; }
+        //public int NumberOfSeats { get; set;}
+        //public int NumberOfRemainingSeats { get; set; }
         public decimal TicketCost { get; set; }
 
     }
